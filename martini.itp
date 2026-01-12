@@ -1,0 +1,69 @@
+[ defaults ]
+1 1
+
+
+[ atomtypes ]
+; water
+P4 72.0 0.000 A 0.0 0.0
+
+; NAM
+SN1 45.0 0.000 A 0.0 0.0
+SP5 45.0 0.000 A 0.0 0.0
+SN0 45.0 0.000 A 0.0 0.0
+
+; new beads added for polystyrene:
+STY 45.0 0.000 A 0.0 0.0 ; ring bead
+SCY 45.0 0.000 A 0.0 0.0 ; backbone bead
+
+
+
+[ nonbond_params ]
+
+;self
+
+  P4 	P4 	1 	0.21558E-00 	0.23238E-02 ; attractive 
+  SN1   SN1     1 	0.58789E-01 	0.37162E-03 ; 75almost intermediate, s=0.43
+  SP5 	SP5 	1 	0.10620E-00 	0.67132E-03 ; 75supra attractive, s=0.43
+  SCY   SCY     1       0.66375E-01 	0.41957E-03 ; epsi=75%(3.5), s=0.43
+  STY   STY     1       0.45601E-01 	0.21661E-03 ; epsi=75%(3.2), s=0.41
+  SN0	SN0	1 	0.85338E-01 	0.53946E-03 ; 75almost attractive, s=0.43 
+
+;self inter NAM
+  SP5 	SN1 	1 	0.66375E-01 	0.41957E-03 ; 75intermediate, s=0.43
+
+;self inter PS
+  STY 	SCY 	1 	0.58789E-01 	0.37162E-03 ; 75almost intermediate, s=0.43
+
+;water
+  P4	SP5	1	0.24145E-00	0.26027E-02 ; supra attractive
+  P4 	SN1 	1 	0.15091E-00 	0.16267E-02 ; intermediate 
+  P4 	STY 	1 	0.11642E-00 	0.12549E-02 ; semi repulsive, used for PS-water interactions
+  P4 	SCY 	1 	0.86233E-01 	0.92953E-03 ; repulsive, used for PS-water interactions
+; P4 	SN0 	1 	0.17246E-00 	0.18590E-02 ; semi attractive
+  P4    SN0     1       0.15091E-00     0.16267E-02 ; intermediate
+
+
+; cross NAM-PS
+  SP5 	STY 	1 	0.11642E-00 	0.12549E-02 ; semi repulsive
+  SP5 	SCY 	1 	0.86233E-01 	0.92953E-03 ; repulsive
+  SN1 	SCY 	1 	0.51203E-01 	0.32367E-03 ; 75semi repulsive s=0.43
+  SN1 	STY 	1 	0.58789E-01 	0.37162E-03 ; 75almost intermediate, s=0.43
+
+; cross NAM-PEG
+  SN0	SN1	1 	0.66375E-01 	0.41957E-03 ; 75intermediate, s=0.43
+  SN0 	SP5 	1 	0.66375E-01 	0.41957E-03 ; 75intermediate, s=0.43
+
+; cross PEG-PS
+  SN0 	SCY 	1 	0.51203E-01 	0.32367E-03 ; 75semi repulsive s=0.43
+  SN0 	STY 	1 	0.58789E-01 	0.37162E-03 ; 75almost intermediate, s=0.43
+
+;;;;;; WATER (representing 4 H2O molecules)
+
+[ moleculetype ]
+; molname  	nrexcl
+  W 	    	1
+
+[ atoms ]
+;id 	type 	resnr 	residu 	atom 	cgnr 	charge
+ 1 	P4 	1 	W 	W 	1 	0 
+
